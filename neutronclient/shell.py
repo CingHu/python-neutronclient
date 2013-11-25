@@ -56,6 +56,9 @@ from neutronclient.neutron.v2_0 import router
 from neutronclient.neutron.v2_0 import securitygroup
 from neutronclient.neutron.v2_0 import servicetype
 from neutronclient.neutron.v2_0 import subnet
+from neutronclient.neutron.v2_0.vm import device
+from neutronclient.neutron.v2_0.vm import device_template
+from neutronclient.neutron.v2_0.vm import service_instance
 from neutronclient.neutron.v2_0.vpn import ikepolicy
 from neutronclient.neutron.v2_0.vpn import ipsec_site_connection
 from neutronclient.neutron.v2_0.vpn import ipsecpolicy
@@ -271,6 +274,21 @@ COMMAND_V2 = {
     'nuage-netpartition-show': netpartition.ShowNetPartition,
     'nuage-netpartition-create': netpartition.CreateNetPartition,
     'nuage-netpartition-delete': netpartition.DeleteNetPartition,
+    'svcvm-device-template-create': device_template.CreateDeviceTemplate,
+    'svcvm-device-template-list': device_template.ListDeviceTemplate,
+    'svcvm-device-template-show': device_template.ShowDeviceTemplate,
+    'svcvm-device-template-update': device_template.UpdateDeviceTemplate,
+    'svcvm-device-template-delete': device_template.DeleteDeviceTemplate,
+    'svcvm-service-instance-create': service_instance.CreateServiceInstance,
+    'svcvm-service-instance-list': service_instance.ListServiceInstance,
+    'svcvm-service-instance-show': service_instance.ShowServiceInstance,
+    'svcvm-service-instance-update': service_instance.UpdateServiceInstance,
+    'svcvm-service-instance-delete': service_instance.DeleteServiceInstance,
+    'svcvm-device-create': device.CreateDevice,
+    'svcvm-device-list': device.ListDevice,
+    'svcvm-device-show': device.ShowDevice,
+    'svcvm-device-update': device.UpdateDevice,
+    'svcvm-device-delete': device.DeleteDevice,
 }
 
 COMMANDS = {'2.0': COMMAND_V2}

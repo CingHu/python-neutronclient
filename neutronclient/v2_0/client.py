@@ -225,6 +225,12 @@ class Client(object):
     firewall_path = "/fw/firewalls/%s"
     net_partitions_path = "/net-partitions"
     net_partition_path = "/net-partitions/%s"
+    device_templates_path = '/servicevm/device-templates'
+    device_template_path = '/servicevm/device-templates/%s'
+    service_instances_path = '/servicevm/service-instances'
+    service_instance_path = '/servicevm/service-instances/%s'
+    devices_path = '/servicevm/devices'
+    device_path = '/servicevm/devices/%s'
 
     # API has no way to report plurals, so we have to hard code them
     EXTED_PLURALS = {'routers': 'router',
@@ -1162,6 +1168,71 @@ class Client(object):
     def delete_net_partition(self, netpartition):
         """Delete the network partition."""
         return self.delete(self.net_partition_path % netpartition)
+
+    @APIParamsCall
+    def list_device_templates(self, retrieve_all=True, **_params):
+        return self.list('device_templates', self.device_templates_path,
+                         retrieve_all, **_params)
+
+    @APIParamsCall
+    def show_device_template(self, device_template, **_params):
+        return self.get(self.device_template_path % device_template,
+                        params=_params)
+
+    @APIParamsCall
+    def update_device_template(self, device_template, body=None):
+        return self.put(self.device_template_path % device_template, body=body)
+
+    @APIParamsCall
+    def create_device_template(self, body=None):
+        return self.post(self.device_templates_path, body=body)
+
+    @APIParamsCall
+    def delete_device_template(self, device_template):
+        return self.delete(self.device_template_path % device_template)
+
+    @APIParamsCall
+    def list_service_instances(self, retrieve_all=True, **_params):
+        return self.list('service_instances', self.service_instances_path,
+                         retrieve_all, **_params)
+
+    @APIParamsCall
+    def show_service_instance(self, service_instance, **_params):
+        return self.get(self.service_instance_path % service_instance,
+                        params=_params)
+
+    @APIParamsCall
+    def update_service_instance(self, service_instance, body=None):
+        return self.put(self.service_instance_path % service_instance,
+                        body=body)
+
+    @APIParamsCall
+    def create_service_instance(self, body=None):
+        return self.post(self.service_instances_path, body=body)
+
+    @APIParamsCall
+    def delete_service_instance(self, service_instance):
+        return self.delete(self.service_instance_path % service_instance)
+
+    @APIParamsCall
+    def list_devices(self, retrieve_all=True, **_params):
+        return self.list('devices', self.devices_path, retrieve_all, **_params)
+
+    @APIParamsCall
+    def show_device(self, device, **_params):
+        return self.get(self.device_path % device, params=_params)
+
+    @APIParamsCall
+    def update_device(self, device, body=None):
+        return self.put(self.device_path % device, body=body)
+
+    @APIParamsCall
+    def create_device(self, body=None):
+        return self.post(self.devices_path, body=body)
+
+    @APIParamsCall
+    def delete_device(self, device):
+        return self.delete(self.device_path % device)
 
     def __init__(self, **kwargs):
         """Initialize a new client for the Neutron v2.0 API."""
